@@ -7,5 +7,6 @@
     services/
     utils/
     config/
-
+    repository/
+    services/
 -test [later]
