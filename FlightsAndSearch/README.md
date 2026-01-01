@@ -5,6 +5,7 @@
 - Execute `npm install` on the same path as of your root directory of the downloaded project.
 - Create a `.env` file in the root directory and add the following environment variable.
     - `Port=3000`
+    - `npx sequelize db:migrate`
 
 # Whimsical, LucidChart for Database Design
 ## DB Desighn
