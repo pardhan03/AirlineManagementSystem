@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const { City } = require('../models/index');
 
 class CityRepository {
@@ -33,8 +34,8 @@ class CityRepository {
             //         id:cityId
             //     }
             // });
-            const city =  await City.findByPk(cityId);
-            city?.name = data?.name || '';
+            const city = await City.findByPk(cityId);
+            city.name = data?.name || '';
             await city.save();
             return city;
         } catch (error) {
@@ -45,13 +46,33 @@ class CityRepository {
 
     async getCity(cityId) {
         try {
-            const city =  await City.findByPk(cityId);
+            const city = await City.findByPk(cityId);
             return city;
         } catch (error) {
             console.log('Repository layer Error While getcity by ID:', error);
             throw { error };
         }
-    }
+    };
+
+    async getAllCities(filter) {
+        try {
+            if (filter.name) {
+                const cities = await City.findAll({
+                    where: {
+                        name: {
+                            [Op.startsWith]: filter.name,
+                        },
+                    },
+                });
+                return cities;
+            };
+            const cities = await City.findAll();
+            return cities;
+        } catch (error) {
+            console.log('Repository layer Error While getcity by ID:', error);
+            throw { error };
+        }
+    };
 };
 
 module.exports = CityRepository;

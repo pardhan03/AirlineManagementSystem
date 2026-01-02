@@ -45,9 +45,9 @@ class CityService {
         }
     };
 
-    async getAllCities() {
+    async getAllCities(filter ) {
         try {
-            const cities = this.cityRepository.findAll();
+            const cities = this.cityRepository.getAllCities({name: filter.name });
             return cities;
         } catch (error) {
             console.log('Error at Service layer while Creating a city:', error);
