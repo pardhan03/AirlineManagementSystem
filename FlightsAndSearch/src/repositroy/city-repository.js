@@ -6,6 +6,7 @@ class CityRepository {
             const city = await City.create({ name });
             return city;
         } catch (error) {
+            console.log('Repository layer Error While creating a city:', error);
             throw { error };
         }
     };
@@ -17,7 +18,33 @@ class CityRepository {
                     id: cityId
                 }
             });
+            return true;
         } catch (error) {
+            console.log('Repository layer Error While delete a city:', error);
+            throw { error };
+        }
+    };
+
+    async updateCity(cityId, data) {
+        try {
+            const city = await City.update(data, {
+                where: {
+                    id:cityId
+                }
+            });
+            return city;
+        } catch (error) {
+            console.log('Repository layer Error While Update City:', error);
+            throw { error }
+        }
+    };
+
+    async getCity(cityId) {
+        try {
+            const city =  await City.findByPk(cityId);
+            return city;
+        } catch (error) {
+            console.log('Repository layer Error While getcity by ID:', error);
             throw { error };
         }
     }
