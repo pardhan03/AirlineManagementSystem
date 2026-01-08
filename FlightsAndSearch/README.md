@@ -6,6 +6,7 @@
 - Create a `.env` file in the root directory and add the following environment variable.
     - `Port=3000`
     - `npx sequelize db:migrate`
+    - `npx sequelize-cli db:seed:all` to seed all the data
 
 # Whimsical, LucidChart for Database Design
 ## DB Desighn

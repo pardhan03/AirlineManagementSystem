@@ -16,9 +16,19 @@ class FlightService {
             const flight = this.flightRepository.createFlight({ ...data, totalSeats: airplane.capacity });
             return flight;
         } catch (error) {
-            console.log('Repository layer Error While creating a flight:', error);
+            console.log('Service layer Error While creating a flight:', error);
             throw { error };
         }
     };
+
+    async getAllFlightData(data) {
+        try {
+            const flights = this.flightRepository.getAllFlights(data);
+            return flights;
+        } catch (error) {
+            console.log('Service layer Error While fetching the flights:', error);
+            throw { error };
+        }
+    }
 };
 module.exports = FlightService;
