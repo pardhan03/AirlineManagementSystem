@@ -16,6 +16,7 @@ const validateCreateFlight = (req, res, next) => {
             err: 'Missing mandatory fields to create a flight',
         });
     };
+    next();
 };
 
 module.exports ={
