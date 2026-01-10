@@ -8,7 +8,7 @@ class FlightService {
 
     async createFlight(data) {
         try {
-            if(!compareTime(data.arrivalTime, data.departureTime)) {
+            if (!compareTime(data.arrivalTime, data.departureTime)) {
                 throw { error: 'Arrival can not be less than departure time' };
             };
 
@@ -35,6 +35,16 @@ class FlightService {
         try {
             const flights = this.flightRepository.getFlight(flightId);
             return flights;
+        } catch (error) {
+            console.log('Service layer Error While fetching the flights:', error);
+            throw { error };
+        }
+    };
+
+    async updateFlight(flightId, data) {
+        try {
+            const res = this.flightRepository.updateFlight(flightId, data);
+            return res;
         } catch (error) {
             console.log('Service layer Error While fetching the flights:', error);
             throw { error };

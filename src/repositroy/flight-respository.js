@@ -65,6 +65,18 @@ class FlightRepository {
         }
     };
 
+    async updateFlight(flightId, data) {
+        try {
+            const flight = await Flights.update(data, {
+                where : flightId
+            });
+            return flight;
+        } catch (error) {
+            console.log('Service layer Error While fetching the flights:', error);
+            throw { error };
+        }
+    }
+
     // async deleteCity(cityId) {
     //     try {
     //         await City.destroy({
