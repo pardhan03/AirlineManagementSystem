@@ -29,6 +29,16 @@ class FlightService {
             console.log('Service layer Error While fetching the flights:', error);
             throw { error };
         }
+    };
+
+    async getFlight(flightId) {
+        try {
+            const flights = this.flightRepository.getFlight(flightId);
+            return flights;
+        } catch (error) {
+            console.log('Service layer Error While fetching the flights:', error);
+            throw { error };
+        }
     }
 };
 module.exports = FlightService;
